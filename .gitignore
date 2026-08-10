@@ -1,0 +1,16 @@
+data/raw/
+data/processed/*.rds
+data/processed/expression_matrix_vst.rds
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+venv/
+.venv/
+.DS_Store
+.Rhistory
+.RData
+.Rproj.user/
+.vscode/
+.idea/
+/data
+data/
