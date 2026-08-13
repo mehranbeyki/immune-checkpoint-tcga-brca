@@ -3,3 +3,5 @@
     remote = myremote
 ['remote "myremote"']
     url = /Users/mehranbeyki/dvc_local_storage
+['remote "origin"']
+    url = https://dagshub.com/mehranbeyki/immune-checkpoint-tcga-brca.dvc
