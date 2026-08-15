@@ -1,0 +1,9 @@
+import gzip
+
+with gzip.open("/Users/mehranbeyki/portfolio-projects/tcga-brca-immune-checkpoint/data/raw/gex/scRNAseq PT1/features.tsv.gz", "rt") as f:
+    lines = f.readlines()
+
+print(f" all lines : {len(lines)}\n")
+print("10 lines from the end:")
+for line in lines[-10:]:
+    print(line.strip())

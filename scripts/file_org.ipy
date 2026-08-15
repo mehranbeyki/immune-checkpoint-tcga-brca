@@ -1,0 +1,53 @@
+import os
+import re
+import shutil
+import pandas as pd
+# --- file dir ---
+RAW_DIR = "/Users/mehranbeyki/portfolio-projects/tcga-brca-immune-checkpoint/data/raw/GSE300475/GSE300475_RAW"
+OUT_GEX = "/Users/mehranbeyki/portfolio-projects/tcga-brca-immune-checkpoint/data/raw/gex"
+OUT_VDJ = "/Users/mehranbeyki/portfolio-projects/tcga-brca-immune-checkpoint/data/raw/vdj"
+os.makedirs(OUT_GEX, exist_ok=True)
+os.makedirs(OUT_VDJ, exist_ok=True)
+# -------------------------------------
+# use mapping_table.csv from 01_data_download_preprocessing notbook
+mapping = pd.read_csv("/Users/mehranbeyki/portfolio-projects/tcga-brca-immune-checkpoint/data/mapping_table.csv")
+gsm_to_name = dict(zip(mapping["geo_accession"], mapping["title"]))
+
+# --- REGEX ---
+gex_pattern = re.compile(r"(GSM\d+).*?(barcodes|features|matrix)\.(tsv|mtx)\.gz$")
+vdj_pattern = re.compile(r"(GSM\d+).*?all_contig_annotations\.csv\.gz$")
+# -------------------------------------
+
+files = sorted(os.listdir(RAW_DIR))
+
+for fname in files:
+    gex_match = gex_pattern.match(fname)
+    vdj_match = vdj_pattern.match(fname)
+
+    if gex_match:
+        gsm, ftype = gex_match.group(1), gex_match.group(2)
+        sample_name = gsm_to_name.get(gsm, gsm)
+        sample_dir = os.path.join(OUT_GEX, sample_name)
+        os.makedirs(sample_dir, exist_ok=True)
+
+        target_name = {
+            "barcodes": "barcodes.tsv.gz",
+            "features": "features.tsv.gz",
+            "matrix":   "matrix.mtx.gz",
+        }[ftype]
+
+        shutil.copy(
+            os.path.join(RAW_DIR, fname),
+            os.path.join(sample_dir, target_name)
+        )
+        print(f"GEX  | {fname}  →  {sample_dir}/{target_name}")
+
+    elif vdj_match:
+        gsm = vdj_match.group(1)
+        sample_name = gsm_to_name.get(gsm, gsm)
+        target_path = os.path.join(OUT_VDJ, f"{sample_name}_all_contig_annotations.csv.gz")
+        shutil.copy(os.path.join(RAW_DIR, fname), target_path)
+        print(f"VDJ  | {fname}  →  {target_path}")
+
+    else:
+        print(f"No record: {fname}")
