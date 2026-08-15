@@ -1,0 +1,6 @@
+outs:
+- md5: 00892624af32c906c5f9de04d95655b5.dir
+  size: 862562
+  nfiles: 3
+  hash: md5
+  path: tables
