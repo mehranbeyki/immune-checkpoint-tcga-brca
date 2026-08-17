@@ -12,5 +12,5 @@ venv/
 .Rproj.user/
 .vscode/
 .idea/
-/data
 data/
+/data/
