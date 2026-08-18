@@ -3,14 +3,14 @@ import re
 import shutil
 import pandas as pd
 # --- file dir ---
-RAW_DIR = "/Users/mehranbeyki/portfolio-projects/tcga-brca-immune-checkpoint/data/raw/GSE300475/GSE300475_RAW"
-OUT_GEX = "/Users/mehranbeyki/portfolio-projects/tcga-brca-immune-checkpoint/data/raw/gex"
-OUT_VDJ = "/Users/mehranbeyki/portfolio-projects/tcga-brca-immune-checkpoint/data/raw/vdj"
+RAW_DIR = "/Users/mehranbeyki/portfolio-projects/scrna-immune-checkpoint-response/data/raw/GSE300475/GSE300475_RAW"
+OUT_GEX = "/Users/mehranbeyki/portfolio-projects/scrna-immune-checkpoint-response/data/raw/gex"
+OUT_VDJ = "/Users/mehranbeyki/portfolio-projects/scrna-immune-checkpoint-response/data/raw/vdj"
 os.makedirs(OUT_GEX, exist_ok=True)
 os.makedirs(OUT_VDJ, exist_ok=True)
 # -------------------------------------
 # use mapping_table.csv from 01_data_download_preprocessing notbook
-mapping = pd.read_csv("/Users/mehranbeyki/portfolio-projects/tcga-brca-immune-checkpoint/data/mapping_table.csv")
+mapping = pd.read_csv("/Users/mehranbeyki/portfolio-projects/scrna-immune-checkpoint-response/data/mapping_table.csv")
 gsm_to_name = dict(zip(mapping["geo_accession"], mapping["title"]))
 
 # --- REGEX ---
