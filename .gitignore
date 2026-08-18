@@ -1,16 +1,21 @@
-data/raw/
-data/processed/*.rds
-data/processed/expression_matrix_vst.rds
-.ipynb_checkpoints/
-__pycache__/
-*.pyc
+# Data and Models
+data/
+*.rds
+*.RData
+*.Rhistory
+
+# Environments and Secrets
+.env
+.env.*
+*.secret
 venv/
 .venv/
+
+# IDE and OS files
 .DS_Store
-.Rhistory
-.RData
-.Rproj.user/
 .vscode/
 .idea/
-data/
-/data/
+.Rproj.user/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

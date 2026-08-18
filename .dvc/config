@@ -4,4 +4,4 @@
 ['remote "myremote"']
     url = /Users/mehranbeyki/dvc_local_storage
 ['remote "origin"']
-    url = https://dagshub.com/mehranbeyki/immune-checkpoint-tcga-brca.dvc
+    url = https://dagshub.com/mehranbeyki/scrna-immune-checkpoint-response.dvc
